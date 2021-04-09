@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HogwartsBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Casa">
+    <Key>
+      <PropertyRef Name="IdCasa" />
+    </Key>
+    <Property Name="IdCasa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inscripcion">
+    <Key>
+      <PropertyRef Name="IdInscripcion" />
+    </Key>
+    <Property Name="IdInscripcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Identificacion" Type="bigint" Nullable="false" />
+    <Property Name="Edad" Type="tinyint" Nullable="false" />
+    <Property Name="IdCasa" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Casa_Inscripcion">
+    <End Role="Casa" Type="Self.Casa" Multiplicity="1" />
+    <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Casa">
+        <PropertyRef Name="IdCasa" />
+      </Principal>
+      <Dependent Role="Inscripcion">
+        <PropertyRef Name="IdCasa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HogwartsBDModelStoreContainer">
+    <EntitySet Name="Casa" EntityType="Self.Casa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inscripcion" EntityType="Self.Inscripcion" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Casa_Inscripcion" Association="Self.FK_Casa_Inscripcion">
+      <End Role="Casa" EntitySet="Casa" />
+      <End Role="Inscripcion" EntitySet="Inscripcion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

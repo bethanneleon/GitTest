@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HogwartsBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Casa">
+    <Key>
+      <PropertyRef Name="IdCasa" />
+    </Key>
+    <Property Name="IdCasa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Inscripcion" Relationship="HogwartsBDModel.FK_Casa_Inscripcion" FromRole="Casa" ToRole="Inscripcion" />
+  </EntityType>
+  <EntityContainer Name="HogwartsBDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Casa" EntityType="Self.Casa" />
+    <EntitySet Name="Inscripcion" EntityType="HogwartsBDModel.Inscripcion" />
+    <AssociationSet Name="FK_Casa_Inscripcion" Association="HogwartsBDModel.FK_Casa_Inscripcion">
+      <End Role="Casa" EntitySet="Casa" />
+      <End Role="Inscripcion" EntitySet="Inscripcion" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Inscripcion">
+    <Key>
+      <PropertyRef Name="IdInscripcion" />
+    </Key>
+    <Property Name="IdInscripcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Identificacion" Type="Int64" Nullable="false" />
+    <Property Name="Edad" Type="Byte" Nullable="false" />
+    <Property Name="IdCasa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Casa" Relationship="HogwartsBDModel.FK_Casa_Inscripcion" FromRole="Inscripcion" ToRole="Casa" />
+  </EntityType>
+  <Association Name="FK_Casa_Inscripcion">
+    <End Type="HogwartsBDModel.Casa" Role="Casa" Multiplicity="1" />
+    <End Type="HogwartsBDModel.Inscripcion" Role="Inscripcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Casa">
+        <PropertyRef Name="IdCasa" />
+      </Principal>
+      <Dependent Role="Inscripcion">
+        <PropertyRef Name="IdCasa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

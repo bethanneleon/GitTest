@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HogwartsBDModelStoreContainer" CdmEntityContainer="HogwartsBDEntities">
+    <EntitySetMapping Name="Casa">
+      <EntityTypeMapping TypeName="HogwartsBDModel.Casa">
+        <MappingFragment StoreEntitySet="Casa">
+          <ScalarProperty Name="IdCasa" ColumnName="IdCasa" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inscripcion">
+      <EntityTypeMapping TypeName="HogwartsBDModel.Inscripcion">
+        <MappingFragment StoreEntitySet="Inscripcion">
+          <ScalarProperty Name="IdCasa" ColumnName="IdCasa" />
+          <ScalarProperty Name="Edad" ColumnName="Edad" />
+          <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdInscripcion" ColumnName="IdInscripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
